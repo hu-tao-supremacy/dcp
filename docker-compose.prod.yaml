@@ -11,6 +11,11 @@ services:
       - HTS_SVC_ORGANIZER=organizer:50057
       - HTS_SVC_PERSONALIZATION=personalization:50058
       - HTS_SVC_FACILITY=facility:50059
+      - GCP_CREDENTIALS=
+      - GCP_BUCKET_NAME=
+      - CHULA_SSO_APP_ID=
+      - CHULA_SSO_APP_SECRET=
+      - NODE_ENV=production
   account:
     image: ghcr.io/hu-tao-supremacy/account-prod:latest
     environment:
