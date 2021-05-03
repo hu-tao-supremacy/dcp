@@ -57,4 +57,4 @@ services:
       - POSTGRES_DB=hts
       - POSTGRES_PORT=5432
       - GRPC_HOST=localhost
-      - GRPC_PORT=50057
+      - GRPC_PORT=50058
