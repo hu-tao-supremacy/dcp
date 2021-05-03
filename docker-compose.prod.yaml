@@ -2,8 +2,6 @@ version: '3'
 services:
   account:
     image: ghcr.io/hu-tao-supremacy/account-prod:latest
-    ports:
-      - 50055:50055
     environment:
       - POSTGRES_HOST=postgres
       - POSTGRES_USER=hu-tao-mains
@@ -13,10 +11,10 @@ services:
       - GRPC_HOST=localhost
       - GRPC_PORT=50055
       - JWT_SECRET=hu-tao-mains
+    networks:
+      - hts
   participant:
     image: ghcr.io/hu-tao-supremacy/participant-prod:latest
-    ports:
-      - 50056:50056
     environment:
       - POSTGRES_HOST=postgres
       - POSTGRES_USER=hu-tao-mains
@@ -25,10 +23,10 @@ services:
       - POSTGRES_PORT=5432
       - GRPC_HOST=localhost
       - GRPC_PORT=50056
+    networks:
+      - hts
   organizer:
     image: ghcr.io/hu-tao-supremacy/organizer-prod:latest
-    ports:
-      - 50057:50057
     environment:
       - POSTGRES_HOST=postgres
       - POSTGRES_USER=hu-tao-mains
@@ -38,10 +36,10 @@ services:
       - GRPC_HOST=localhost
       - GRPC_PORT=50057
       - HTS_SVC_ACCOUNT=account:50055
+    networks:
+      - hts
   personalization:
     image: ghcr.io/hu-tao-supremacy/personalization-prod:latest
-    ports:
-      - 50058:50058
     environment:
       - POSTGRES_HOST=postgres
       - POSTGRES_USER=hu-tao-mains
@@ -50,3 +48,8 @@ services:
       - POSTGRES_PORT=5432
       - GRPC_HOST=localhost
       - GRPC_PORT=50058
+    networks:
+      - hts
+networks:
+  hts:
+    name: hts

@@ -8,3 +8,8 @@ services:
       - POSTGRES_DB=hts
       - POSTGRES_USER=hu-tao-mains
       - POSTGRES_PASSWORD=hu-tao-mains
+    networks:
+      - hts
+networks:
+  hts:
+    name: hts
