@@ -1,5 +1,14 @@
 version: '3'
 services:
+  api-gateway:
+    image: ghcr.io/hu-tao-supremacy/api-gateway-prod:latest
+    environment:
+      - PORT=3000
+      - HTS_SVC_ACCOUNT=account:50055
+      - HTS_SVC_PARTICIPANT=participant:50056
+      - HTS_SVC_ORGANIZER=organizer:50057
+      - HTS_SVC_PERSONALIZATION=personalization:50058
+      - HTS_SVC_FACILITY=facility:50059
   account:
     image: ghcr.io/hu-tao-supremacy/account-prod:latest
     environment:
@@ -48,6 +57,18 @@ services:
       - POSTGRES_PORT=5432
       - GRPC_HOST=localhost
       - GRPC_PORT=50058
+    networks:
+      - hts
+  facility:
+    image: ghcr.io/hu-tao-supremacy/facility-dev:c8e8181
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_USER=hu-tao-mains
+      - POSTGRES_PASSWORD=hu-tao-mains
+      - POSTGRES_DB=hts
+      - POSTGRES_PORT=5432
+      - GRPC_HOST=localhost
+      - GRPC_PORT=50059
     networks:
       - hts
 networks:
