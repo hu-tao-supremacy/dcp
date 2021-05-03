@@ -16,6 +16,8 @@ services:
       - CHULA_SSO_APP_ID=
       - CHULA_SSO_APP_SECRET=
       - NODE_ENV=production
+    networks:
+      - hts
   account:
     image: ghcr.io/hu-tao-supremacy/account-prod:latest
     environment:
