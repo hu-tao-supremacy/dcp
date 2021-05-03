@@ -1,0 +1,19 @@
+name: Init Submodules
+on:
+  push:
+    paths:
+      - "submodules.sh"
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.DODOCO_BOT_PAT }}
+          ref: "main"
+      - run: sh ./submodules.sh
+        env:
+          GIT_COMMITTER_NAME: dodoco-bot
+          GIT_AUTHOR_NAME: dodoco-bot
+          EMAIL: 77519537+dodoco-bot@users.noreply.github.com
