@@ -3,6 +3,6 @@ set -e
 host="$1"
 shift
 
-until psql -h "$host" -U "hu-tao-mains" -c '\l'; do
+until PGPASSWORD="hu-tao-mains" psql -h "$host" -U "hu-tao-mains" -p 5432 hts -c '\q'; do
   sleep 1
 done

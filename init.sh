@@ -1,5 +1,6 @@
 cd $(dirname $0)
-docker-compose -f ./docker-compose.postgres.yaml up -d --project-name "hu-tao-supremacy"
-sh ./wait-for-postgres.sh localhost:5432
-cd ./migrations && make sync
-docker-compose -f ./docker-compose.prod.yaml up -d --project-name "hu-tao-supremacy"
+git submodule update --init
+docker-compose -p "hts" -f ./docker-compose.postgres.yaml up -d
+sh ./wait-for-postgres.sh localhost
+(cd ./migrations && make sync)
+docker-compose -p "hts" -f ./docker-compose.prod.yaml up -d
